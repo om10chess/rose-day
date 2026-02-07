@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title> JAPANI GUDIYA KE LIYE🌹</title>
+  <title>Rose Day for Sans 🌹</title>
+
   <style>
     body {
       margin: 0;
@@ -28,17 +29,18 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* MAIN CARD */
     .frame {
       position: relative;
       width: 420px;
       height: 560px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.92);
       border-radius: 35px;
       box-shadow: 0 30px 70px rgba(0,0,0,0.35);
       padding-top: 30px;
       text-align: center;
       animation: float 4s ease-in-out infinite;
-      overflow: hidden;
+      z-index: 10;
     }
 
     @keyframes float {
@@ -57,6 +59,7 @@
       margin-bottom: 20px;
     }
 
+    /* PHOTO */
     .photo-container {
       position: relative;
       width: 240px;
@@ -73,6 +76,7 @@
       background: url('sansss.jpeg') center/cover no-repeat;
     }
 
+    /* CURTAINS */
     .curtain {
       position: absolute;
       top: 0;
@@ -95,45 +99,60 @@
     }
 
     @keyframes openLeft {
-      from { transform: translateX(0); }
       to { transform: translateX(-100%); }
     }
 
     @keyframes openRight {
-      from { transform: translateX(0); }
       to { transform: translateX(100%); }
     }
 
-    .bouquet {
-      position: absolute;
-      width: 120px;
-      z-index: 4;
-      top: 50%;
-      transform: translateY(-50%);
-      animation: bouquetMove 3s ease forwards;
-    }
-
-    .bouquet.left { left: -140px; }
-    .bouquet.right { right: -140px; }
-
-    @keyframes bouquetMove {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-
+    /* FALLING PETALS */
     .petal {
       position: absolute;
       width: 40px;
       animation: fall linear infinite;
       pointer-events: none;
+      z-index: 2;
     }
 
     @keyframes fall {
       from { transform: translateY(-60px) rotate(0deg); opacity: 1; }
       to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
+
+    /* SELF-FORMING BACKGROUND ROSES */
+    .bg-rose {
+      position: absolute;
+      width: 90px;
+      opacity: 0;
+      animation: bloom 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes bloom {
+      0% {
+        transform: scale(0.2) rotate(-10deg);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+      80% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.2) translateY(-40px);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <div class="frame">
@@ -146,10 +165,11 @@
       <div class="curtain right"></div>
     </div>
 
-    <p>For you🌹</p>
+    <p>For you 🌹</p>
   </div>
 
   <script>
+    /* Falling petals */
     const petals = ['rose.jpeg','yellow.jpeg','white.jpeg'];
 
     function dropPetal() {
@@ -163,10 +183,28 @@
     }
 
     setInterval(dropPetal, 700);
+
+    /* Self-forming blooming roses */
+    function createBloomingRose() {
+      const rose = document.createElement('img');
+      rose.src = petals[Math.floor(Math.random() * petals.length)];
+      rose.className = 'bg-rose';
+
+      rose.style.left = Math.random() * 100 + 'vw';
+      rose.style.top = Math.random() * 100 + 'vh';
+      rose.style.animationDuration = (8 + Math.random() * 6) + 's';
+
+      document.body.appendChild(rose);
+
+      setTimeout(() => rose.remove(), 14000);
+    }
+
+    setInterval(createBloomingRose, 1200);
   </script>
 
 </body>
 </html>
+
 
 
 
