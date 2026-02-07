@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rose Day for Sans 🌹</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(120deg,
+        #ff9a9e,
+        #fad0c4,
+        #fbc2eb,
+        #a18cd1,
+        #fbc8d4);
+      background-size: 400% 400%;
+      animation: gradientFlow 12s ease infinite;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .frame {
+      position: relative;
+      width: 420px;
+      height: 560px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 35px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+      padding-top: 30px;
+      text-align: center;
+      animation: float 4s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    h1 {
+      color: #7a123c;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #6b1c3a;
+      padding: 0 30px;
+      margin-bottom: 20px;
+    }
+
+    .photo-container {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 45px rgba(255,75,92,0.8);
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      background: url('') center/cover no-repeat;
+    }
+
+    .curtain {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, #ff4b5c, #ff9a9e);
+      z-index: 3;
+      animation-duration: 3s;
+      animation-fill-mode: forwards;
+    }
+
+    .curtain.left {
+      left: 0;
+      animation-name: openLeft;
+    }
+
+    .curtain.right {
+      right: 0;
+      animation-name: openRight;
+    }
+
+    @keyframes openLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    @keyframes openRight {
+      from { transform: translateX(0); }
+      to { transform: translateX(100%); }
+    }
+
+    .bouquet {
+      position: absolute;
+      width: 120px;
+      z-index: 4;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: bouquetMove 3s ease forwards;
+    }
+
+    .bouquet.left { left: -140px; }
+    .bouquet.right { right: -140px; }
+
+    @keyframes bouquetMove {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .petal {
+      position: absolute;
+      width: 40px;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-60px) rotate(0deg); opacity: 1; }
+      to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame">
+    <h1>Happy Rose Day, Sans 🌹</h1>
+    <p>Every rose here blooms with the love I carry for you across the distance.</p>
+
+    <div class="photo-container">
+      <div class="D:\Downloads\sansss"></div>
+      <div class="curtain left"></div>
+      <div class="curtain right"></div>
+    </div>
+
+    <p>For you🌹</p>
+  </div>
+
+  <script>
+    const petals = ['petal1.png','petal2.png','petal3.png'];
+
+    function dropPetal() {
+      const p = document.createElement('img');
+      p.src = petals[Math.floor(Math.random()*petals.length)];
+      p.className = 'petal';
+      p.style.left = Math.random()*100 + 'vw';
+      p.style.animationDuration = (Math.random()*6 + 6) + 's';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 12000);
+    }
+
+    setInterval(dropPetal, 700);
+  </script>
+
+</body>
+</html>
