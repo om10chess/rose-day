@@ -2,155 +2,180 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Rose Day for Sans 🌹</title>
+<title>Happy Rose Day Sans 🌹</title>
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(120deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1,#fbc8d4);
-  background-size: 400% 400%;
-  animation: gradientFlow 12s ease infinite;
+  background: white;
   overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Segoe UI', sans-serif;
 }
 
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* ===== CURTAINS ===== */
+.curtain {
+  position: fixed;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,#8b0000,#b11226,#8b0000);
+  z-index: 50;
+  animation: openCurtain 3s ease forwards;
 }
 
-/* CARD */
-.frame {
-  position: relative;
-  width: 420px;
-  height: 560px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 35px;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.35);
-  padding-top: 30px;
+.curtain.left { left: 0; }
+.curtain.right { right: 0; }
+
+@keyframes openCurtain {
+  to { transform: translateX(var(--move)); }
+}
+
+.curtain.left { --move: -100%; }
+.curtain.right { --move: 100%; }
+
+/* ===== CARD ===== */
+.card {
+  padding: 40px;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
   text-align: center;
-  animation: float 4s ease-in-out infinite;
   z-index: 10;
+  background: white;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+h1 {
+  color: #8b1e3f;
 }
 
-h1 { color: #7a123c; }
-p { color: #6b1c3a; padding: 0 30px; }
+p {
+  color: #444;
+}
 
-/* PHOTO */
-.photo-container {
+/* ===== PHOTO + HEART ===== */
+.photo-wrapper {
   position: relative;
-  width: 240px;
-  height: 240px;
-  margin: 20px auto;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 0 45px rgba(255,75,92,0.8);
-  z-index: 12;
+  width: 260px;
+  height: 260px;
+  margin: 30px auto;
 }
 
 .photo {
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
   background: url('sansss.jpeg') center/cover no-repeat;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 3;
 }
 
-/* HEART */
-.heart {
+/* HEART DRAW */
+svg {
   position: absolute;
-  width: 360px;
-  height: 360px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9; /* NOW VISIBLE */
-  pointer-events: none;
+  inset: 0;
 }
 
-.heart img {
-  position: absolute;
-  width: 42px;
+path {
+  fill: none;
+  stroke: #d6336c;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawHeart 4s ease forwards 1.5s;
 }
 
-/* FALLING FLOWERS */
-.petal {
+@keyframes drawHeart {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ===== FALLING ITEMS ===== */
+.fall {
   position: absolute;
+  top: -60px;
   width: 40px;
-  animation: fall linear infinite;
   pointer-events: none;
-  z-index: 1;
+  animation: fall linear forwards;
 }
 
 @keyframes fall {
-  from { transform: translateY(-60px) rotate(0deg); opacity: 1; }
-  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="heart" id="heart"></div>
+<!-- CURTAINS -->
+<div class="curtain left"></div>
+<div class="curtain right"></div>
 
-<div class="frame">
+<!-- CARD -->
+<div class="card">
   <h1>Happy Rose Day, Sans 🌹</h1>
-  <p>Every rose here blooms with the love I carry for you across the distance.</p>
+  <p>Even miles apart, my love finds its way to you.</p>
 
-  <div class="photo-container">
+  <div class="photo-wrapper">
+    <svg viewBox="0 0 260 260">
+      <path d="
+        M130 220
+        C130 220 20 140 20 80
+        C20 40 60 30 90 50
+        C115 65 130 95 130 95
+        C130 95 145 65 170 50
+        C200 30 240 40 240 80
+        C240 140 130 220 130 220
+      " />
+    </svg>
     <div class="photo"></div>
   </div>
 
-  <p>For you 🌹</p>
+  <p>For you ❤️</p>
 </div>
 
 <script>
-/* HEART SHAPE */
-const heart = document.getElementById("heart");
-const flowers = ["rose.jpeg","yellow.jpeg","white1.jpeg"];
+const items = [
+  'rose.jpeg',
+  'yellow.jpeg',
+  'white1.jpeg',
+  '❤️','💗','💖'
+];
 
-for (let i = 0; i < 26; i++) {
-  const a = i / 26 * Math.PI * 2;
-  const x = 180 + 120 * Math.pow(Math.sin(a), 3);
-  const y = 180 - (
-    90 * Math.cos(a)
-    - 40 * Math.cos(2*a)
-    - 20 * Math.cos(3*a)
-    - 10 * Math.cos(4*a)
+function drop() {
+  const el = document.createElement(
+    items[Math.floor(Math.random()*items.length)].includes('png')
+    ? 'img'
+    : 'div'
   );
 
-  const img = document.createElement("img");
-  img.src = flowers[i % flowers.length];
-  img.style.left = x + "px";
-  img.style.top = y + "px";
-  heart.appendChild(img);
+  const item = items[Math.floor(Math.random()*items.length)];
+
+  if (item.includes('png')) {
+    el.src = item;
+    el.style.width = '40px';
+  } else {
+    el.textContent = item;
+    el.style.fontSize = '24px';
+  }
+
+  el.className = 'fall';
+  el.style.left = Math.random()*100 + 'vw';
+  el.style.animationDuration = (6 + Math.random()*4) + 's';
+
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 10000);
 }
 
-/* FALLING BACKGROUND */
-function dropPetal() {
-  const p = document.createElement("img");
-  p.src = flowers[Math.floor(Math.random()*flowers.length)];
-  p.className = "petal";
-  p.style.left = Math.random()*100 + "vw";
-  p.style.animationDuration = (6 + Math.random()*6) + "s";
-  document.body.appendChild(p);
-  setTimeout(() => p.remove(), 12000);
-}
-setInterval(dropPetal, 700);
+setInterval(drop, 500);
 </script>
 
 </body>
 </html>
-
-
-
-
-
