@@ -2,636 +2,199 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Rose Day - Special Edition</title>
+<title>Happy Rose Day Sans 🌹</title>
 
 <style>
-/* ===========================================
-   RESET AND BASE STYLES - COMPREHENSIVE (100+ lines)
-   =========================================== */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-  height: 100%;
-  font-size: 16px;
+body{
+  background:white;
+  overflow:hidden;
+  height:100vh;
 }
 
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background: linear-gradient(135deg, #fff 0%, #ffebee 50%, #fce4ec 100%);
-  overflow: hidden;
-  height: 100vh;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+/* CURTAINS */
+.curtain{
+  position:fixed;
+  top:0;
+  width:50%;
+  height:100%;
+  background:linear-gradient(#7a0000,#b11226);
+  z-index:10;
+  animation:openCurtain 3s forwards;
+}
+.curtain.left{left:0;}
+.curtain.right{right:0;}
+
+@keyframes openCurtain{
+  to{width:0;}
 }
 
-/* ===========================================
-   CURTAIN ANIMATION - MULTI-PHASE (50+ lines)
-   =========================================== */
-.curtain {
-  position: fixed;
-  top: 0;
-  width: 50vw;
-  height: 100vh;
-  background: linear-gradient(45deg, 
-    #8b0000 0%, 
-    #b71c1c 33%, 
-    #d32f2f 66%, 
-    #f44336 100%);
-  z-index: 100;
-  animation: openCurtain 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  box-shadow: 
-    inset 0 0 50px rgba(0,0,0,0.3),
-    inset 0 0 100px rgba(0,0,0,0.2);
+/* CARD */
+.card{
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:90%;
+  max-width:420px;
+  height:620px;
+  background:white;
+  border-radius:25px;
+  box-shadow:0 30px 60px rgba(0,0,0,.15);
+  text-align:center;
+  padding:30px;
 }
 
-.curtain.left {
-  left: 0;
-  transform-origin: left center;
+/* TEXT */
+h1{
+  color:#8b1c3d;
+  margin-bottom:10px;
+}
+p{
+  color:#555;
 }
 
-.curtain.right {
-  right: 0;
-  transform-origin: right center;
+/* HEART CONTAINER */
+.heart-box{
+  position:relative;
+  width:280px;
+  height:260px;
+  margin:25px auto;
 }
 
-@keyframes openCurtain {
-  0% {
-    width: 50vw;
-    opacity: 1;
-    transform: scaleX(1);
-  }
-  30% {
-    width: 25vw;
-    opacity: 0.9;
-  }
-  70% {
-    width: 5vw;
-    opacity: 0.3;
-  }
-  100% {
-    width: 0;
-    opacity: 0;
-    transform: scaleX(0);
-  }
+/* PHOTO INSIDE HEART */
+.heart-img{
+  width:100%;
+  height:100%;
+  background:url("sansss.jpeg") center/cover no-repeat;
+  clip-path:path("M140 240 C-40 100 40 -20 140 80 C240 -20 320 100 140 240 Z");
 }
 
-/* ===========================================
-   MAIN CARD - ADVANCED STYLING (80+ lines)
-   =========================================== */
-.card {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: clamp(320px, 90vw, 420px);
-  height: clamp(500px, 90vh, 620px);
-  background: linear-gradient(145deg, 
-    #ffffff 0%, 
-    #f8f9fa 50%, 
-    #e9ecef 100%);
-  border-radius: clamp(20px, 5vw, 25px);
-  box-shadow: 
-    0 25px 50px rgba(0,0,0,0.15),
-    0 10px 20px rgba(139,28,61,0.1),
-    0 5px 10px rgba(0,0,0,0.05),
-    inset 0 1px 0 rgba(255,255,255,0.8),
-    inset 0 -1px 0 rgba(0,0,0,0.05);
-  text-align: center;
-  padding: clamp(20px, 5vw, 30px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
-  animation: cardAppear 1s ease-out 3.5s both;
+/* HEART DRAW */
+svg{
+  position:absolute;
+  top:0;
+  left:0;
+}
+path{
+  fill:none;
+  stroke:#ff3b7f;
+  stroke-width:6;
+  stroke-linecap:round;
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  animation:drawHeart 4s ease forwards;
+}
+@keyframes drawHeart{
+  to{stroke-dashoffset:0;}
 }
 
-@keyframes cardAppear {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(30px) rotate(-2deg);
-  }
-  50% {
-    transform: scale(1.05) translateY(-5px) rotate(1deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0) rotate(0deg);
-  }
+/* FLOATING HEARTS */
+.heart{
+  position:absolute;
+  font-size:18px;
+  animation:float 8s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(100vh);opacity:1;}
+  to{transform:translateY(-10vh);opacity:0;}
 }
 
-/* ===========================================
-   TYPOGRAPHY SYSTEM (60+ lines)
-   =========================================== */
-h1 {
-  color: #8b1c3d;
-  margin-bottom: clamp(10px, 2vw, 15px);
-  font-size: clamp(1.8rem, 6vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  text-shadow: 
-    0 2px 4px rgba(139,28,61,0.1),
-    0 1px 2px rgba(0,0,0,0.05);
-  position: relative;
-  line-height: 1.2;
+/* FALLING FLOWERS */
+.petal{
+  position:absolute;
+  width:35px;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh) rotate(0deg);opacity:1;}
+  to{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
-h1::before {
-  content: "✨";
-  position: absolute;
-  left: -30px;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: sparkle 2s ease-in-out infinite;
+/* RANDOM LOVE TEXT */
+.love-text{
+  position:absolute;
+  font-size:18px;
+  font-weight:bold;
+  animation:fadeMove 4s linear forwards;
+}
+@keyframes fadeMove{
+  0%{opacity:0;}
+  20%{opacity:1;}
+  100%{opacity:0;transform:translateY(-40px);}
 }
 
-h1::after {
-  content: "🌹";
-  position: absolute;
-  right: -40px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.2em;
-  animation: roseBounce 2s ease-in-out infinite;
+/* MOBILE */
+@media(max-width:500px){
+  .card{height:580px;}
 }
-
-@keyframes sparkle {
-  0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
-  50% { opacity: 1; transform: translateY(-55%) scale(1.2); }
-}
-
-@keyframes roseBounce {
-  0%, 100% { transform: translateY(-50%) scale(1) rotate(0deg); }
-  50% { transform: translateY(-55%) scale(1.1) rotate(5deg); }
-}
-
-.card p {
-  color: #666;
-  margin-bottom: clamp(15px, 3vw, 20px);
-  font-size: clamp(1rem, 4vw, 1.3rem);
-  line-height: 1.5;
-  max-width: 90%;
-  position: relative;
-}
-
-.card p::after {
-  content: "💕";
-  position: absolute;
-  right: -25px;
-  bottom: -10px;
-  font-size: 0.8em;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.2); opacity: 1; }
-}
-
-/* ===========================================
-   HEART CONTAINER (50+ lines)
-   =========================================== */
-.heart-box {
-  position: relative;
-  width: clamp(200px, 70vw, 280px);
-  height: clamp(180px, 65vw, 260px);
-  margin: clamp(20px, 4vw, 30px) auto;
-}
-
-/* HEART IMAGE */
-.heart-img {
-  width: 100%;
-  height: 100%;
-  background: url("sansss.jpeg") center/cover no-repeat;
-  clip-path: path("M140 240 C-40 100 40 -20 140 80 C240 -20 320 100 140 240 Z");
-  border-radius: 15px;
-  box-shadow: 
-    0 15px 30px rgba(0,0,0,0.2),
-    inset 0 2px 0 rgba(255,255,255,0.3);
-  animation: heartBeat 2s ease-in-out infinite;
-}
-
-@keyframes heartBeat {
-  0%, 100% { transform: scale(1); }
-  14% { transform: scale(1.05); }
-  28% { transform: scale(1); }
-  42% { transform: scale(1.05); }
-  70% { transform: scale(1); }
-}
-
-/* SVG HEART OUTLINE */
-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 4px 8px rgba(255,59,127,0.3));
-}
-
-path {
-  fill: none;
-  stroke: linear-gradient(45deg, #ff3b7f, #ff69b4);
-  stroke-width: clamp(4px, 1.5vw, 6px);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawHeart 4s ease forwards 0.5s;
-}
-
-@keyframes drawHeart {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* ===========================================
-   THREE FLOATING ROSES SYSTEM (100+ lines)
-   =========================================== */
-.rose {
-  position: absolute;
-  width: clamp(40px, 12vw, 60px);
-  height: clamp(55px, 16vw, 80px);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  animation: gentleFloat 6s ease-in-out infinite;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-  z-index: 5;
-}
-
-.rose1 {
-  background-image: url("rose.jpeg");
-  top: 10%;
-  left: 5%;
-  animation-delay: 0s;
-  animation-duration: 7s;
-}
-
-.rose2 {
-  background-image: url("white1.jpeg");
-  top: 65%;
-  right: 8%;
-  animation-delay: 2s;
-  animation-duration: 6.5s;
-}
-
-.rose3 {
-  background-image: url("yellow.jpeg");
-  bottom: 15%;
-  left: 15%;
-  animation-delay: 4s;
-  animation-duration: 6.8s;
-}
-
-@keyframes gentleFloat {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg) scale(1);
-  }
-  25% {
-    transform: translateY(-8px) rotate(2deg) scale(1.02);
-  }
-  50% {
-    transform: translateY(-15px) rotate(5deg) scale(1.05);
-  }
-  75% {
-    transform: translateY(-8px) rotate(3deg) scale(1.03);
-  }
-}
-
-/* ===========================================
-   FLOATING HEARTS SYSTEM (40+ lines)
-   =========================================== */
-.heart {
-  position: absolute;
-  color: #ff69b4;
-  font-size: clamp(12px, 3vw, 18px);
-  font-weight: bold;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  animation: float 8s linear infinite;
-  z-index: 1;
-  pointer-events: none;
-}
-
-@keyframes float {
-  from {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 1;
-  }
-  25% {
-    transform: translateY(75vh) rotate(180deg);
-  }
-  50% {
-    transform: translateY(50vh) rotate(360deg);
-  }
-  75% {
-    transform: translateY(25vh) rotate(540deg);
-  }
-  to {
-    transform: translateY(-10vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-
-/* ===========================================
-   LOVE TEXT ANIMATIONS (50+ lines)
-   =========================================== */
-.love-text {
-  position: absolute;
-  font-size: clamp(14px, 3vw, 18px);
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  animation: fadeMove 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  z-index: 2;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-@keyframes fadeMove {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.8);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  80% {
-    opacity: 1;
-    transform: translateY(-20px) scale(1.05);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-40px) scale(1.1);
-  }
-}
-
-/* BOTTOM TEXT */
-.footer-text {
-  margin-top: clamp(20px, 4vw, 25px);
-  font-size: clamp(1.1rem, 4vw, 1.4rem);
-  color: #e91e63;
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(233,30,99,0.3);
-}
-
-/* ===========================================
-   RESPONSIVE BREAKPOINTS (100+ lines)
-   =========================================== */
-@media (max-width: 480px) {
-  .card {
-    width: 95vw;
-    height: 95vh;
-    padding: 8vw;
-    border-radius: 20px;
-    margin: 2.5vw auto;
-  }
-  
-  .heart-box {
-    width: 80vw;
-    height: 70vw;
-  }
-  
-  .rose {
-    width: 50px;
-    height: 65px;
-  }
-  
-  h1 {
-    font-size: clamp(1.5rem, 8vw, 2rem);
-    margin-bottom: 8px;
-  }
-  
-  .card p {
-    font-size: clamp(0.9rem, 5vw, 1.1rem);
-  }
-}
-
-@media (max-width: 360px) {
-  .card {
-    padding: 10vw;
-    border-radius: 15px;
-  }
-  
-  .rose {
-    width: 45px;
-    height: 60px;
-  }
-}
-
-@media (max-height: 600px) {
-  .card {
-    height: 92vh;
-    padding: 4vw;
-  }
-  
-  .heart-box {
-    height: 55vw;
-  }
-}
-
-/* ===========================================
-   PERFORMANCE AND ACCESSIBILITY (30+ lines)
-   =========================================== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-@media (hover: hover) {
-  .rose:hover {
-    transform: scale(1.2) !important;
-    z-index: 10;
-  }
-}
-
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .heart-img {
-    background-size: cover;
-    image-rendering: -webkit-optimize-contrast;
-  }
-}
-/* ===========================================
-   FORCED WHITE BACKGROUND (OVERRIDE ONLY)
-   =========================================== */
-body {
-  background: #ffffff !important;
-}
-
-/* ===========================================
-   FALLING ROSES (REPEATED)
-   =========================================== */
-.falling-rose {
-  position: fixed;
-  top: -100px;
-  width: clamp(35px, 10vw, 55px);
-  height: clamp(50px, 14vw, 75px);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  pointer-events: none;
-  z-index: 0;
-  animation: roseFall linear forwards;
-}
-
-@keyframes roseFall {
-  from {
-    transform: translateY(-120px) rotate(0deg);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
 </style>
 </head>
 
 <body>
+
 <!-- CURTAINS -->
 <div class="curtain left"></div>
 <div class="curtain right"></div>
 
-<!-- MAIN CARD -->
+<!-- CARD -->
 <div class="card">
-  <h1>Happy Rose Day, Sans</h1>
+  <h1>Happy Rose Day, Sans 🌹</h1>
   <p>Even miles apart, my love finds its way to you.</p>
 
   <div class="heart-box">
     <div class="heart-img"></div>
-    
-    <svg viewBox="0 0 280 260">
+    <svg width="280" height="260" viewBox="0 0 280 260">
       <path d="M140 240 C-40 100 40 -20 140 80 C240 -20 320 100 140 240 Z"/>
     </svg>
-    
-    <!-- THREE FLOATING ROSES -->
-    <div class="rose rose1"></div>
-    <div class="rose rose2"></div>
-    <div class="rose rose3"></div>
   </div>
 
-  <p class="footer-text">For you 💖</p>
+  <p>For you 💖</p>
 </div>
 
 <script>
-/* ===========================================
-   ADVANCED PARTICLE SYSTEM (100+ lines)
-   =========================================== */
-// Floating Hearts System
-function createFloatingHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = ["💗", "💖", "💕", "💝"][Math.floor(Math.random() * 4)];
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random() * 10 + 12) + "px";
-  heart.style.animationDuration = (Math.random() * 3 + 6) + "s";
-  document.body.appendChild(heart);
+/* FLOATING HEARTS */
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💗";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=Math.random()*20+12+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},400);
 
-  setTimeout(() => heart.remove(), 9000);
-}
+/* FALLING FLOWERS */
+const flowers=["rose.jpeg","yellow.jpeg","white1.jpeg"];
+setInterval(()=>{
+  const p=document.createElement("img");
+  p.src=flowers[Math.floor(Math.random()*flowers.length)];
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=Math.random()*6+6+"s";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),12000);
+},500);
 
-// Love Text System
-const loveMessages = [
-  "i am falling in love",
-  "all over again", 
-  ];
+/* RANDOM LOVE TEXT */
+const words=["i am falling in love","all over again"];
+const colors=["red","hotpink","purple","orange","blue","green","crimson","deeppink","gold","teal"];
 
-const loveColors = [
-  "#ff1744", "#f50057", "#e91e63", "#ad1457",
-  "#ff4081", "#f8bbd9", "#c2185b", "#ec407a"
-];
-
-function createLoveText() {
-  const text = document.createElement("div");
-  text.className = "love-text";
-  text.textContent = loveMessages[Math.floor(Math.random() * loveMessages.length)];
-  text.style.left = (Math.random() * 80 + 10) + "vw";
-  text.style.top = (Math.random() * 80 + 10) + "vh";
-  text.style.color = loveColors[Math.floor(Math.random() * loveColors.length)];
-  text.style.animationDelay = Math.random() * 2 + "s";
-  document.body.appendChild(text);
-
-  setTimeout(() => text.remove(), 4500);
-}
-
-// Enhanced Animation Loops
-const heartInterval = setInterval(createFloatingHeart, 350);
-const textInterval = setInterval(createLoveText, 550);
-
-// Performance optimization
-let frameCount = 0;
-function optimizeAnimations() {
-  frameCount++;
-  if (frameCount % 60 === 0) {
-    // Clean up old elements periodically
-    document.querySelectorAll('.heart, .love-text').forEach(el => {
-      if (parseFloat(getComputedStyle(el).animationDuration) < 0.1) {
-        el.remove();
-      }
-    });
-  }
-  requestAnimationFrame(optimizeAnimations);
-}
-optimizeAnimations();
-
-// Responsive resize handler
-window.addEventListener('resize', () => {
-  document.body.style.height = window.innerHeight + 'px';
-});
-
-// Touch/click interactions
-document.addEventListener('click', (e) => {
-  // Create burst of hearts on click
-  for(let i = 0; i < 5; i++) {
-    setTimeout(() => createFloatingHeart(), i * 100);
-  }
-});
-
-/* ===========================================
-   FALLING ROSES LOOP (USING SAME 3 IMAGES)
-   =========================================== */
-const fallingRoses = [
-  "rose.jpeg",
-  "white1.jpeg",
-  "yellow.jpeg"
-];
-
-function spawnFallingRose() {
-  const rose = document.createElement("div");
-  rose.className = "falling-rose";
-  rose.style.left = Math.random() * 100 + "vw";
-  rose.style.animationDuration = (Math.random() * 4 + 6) + "s";
-  rose.style.backgroundImage =
-    `url(${fallingRoses[Math.floor(Math.random() * fallingRoses.length)]})`;
-
-  document.body.appendChild(rose);
-
-  setTimeout(() => {
-    rose.remove();
-  }, 11000);
-}
-
-/* continuous loop */
-setInterval(spawnFallingRose, 600);
-
-
-console.log("🌹 Happy Rose Day Animation Loaded - 1000+ lines of pure love! 💖");
+setInterval(()=>{
+  const t=document.createElement("div");
+  t.className="love-text";
+  t.innerText=words[Math.floor(Math.random()*words.length)];
+  t.style.left=Math.random()*80+"vw";
+  t.style.top=Math.random()*80+"vh";
+  t.style.color=colors[Math.floor(Math.random()*colors.length)];
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),4000);
+},600);
 </script>
 
 </body>
