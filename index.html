@@ -466,6 +466,40 @@ path {
     image-rendering: -webkit-optimize-contrast;
   }
 }
+/* ===========================================
+   FORCED WHITE BACKGROUND (OVERRIDE ONLY)
+   =========================================== */
+body {
+  background: #ffffff !important;
+}
+
+/* ===========================================
+   FALLING ROSES (REPEATED)
+   =========================================== */
+.falling-rose {
+  position: fixed;
+  top: -100px;
+  width: clamp(35px, 10vw, 55px);
+  height: clamp(50px, 14vw, 75px);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+  animation: roseFall linear forwards;
+}
+
+@keyframes roseFall {
+  from {
+    transform: translateY(-120px) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
 </style>
 </head>
 
@@ -516,12 +550,7 @@ function createFloatingHeart() {
 const loveMessages = [
   "i am falling in love",
   "all over again", 
-  "with you forever",
-  "my heart beats",
-  "only for you",
-  "every single day",
-  "you're my everything"
-];
+  ];
 
 const loveColors = [
   "#ff1744", "#f50057", "#e91e63", "#ad1457",
@@ -573,6 +602,34 @@ document.addEventListener('click', (e) => {
     setTimeout(() => createFloatingHeart(), i * 100);
   }
 });
+
+/* ===========================================
+   FALLING ROSES LOOP (USING SAME 3 IMAGES)
+   =========================================== */
+const fallingRoses = [
+  "rose.jpeg",
+  "white1.jpeg",
+  "yellow.jpeg"
+];
+
+function spawnFallingRose() {
+  const rose = document.createElement("div");
+  rose.className = "falling-rose";
+  rose.style.left = Math.random() * 100 + "vw";
+  rose.style.animationDuration = (Math.random() * 4 + 6) + "s";
+  rose.style.backgroundImage =
+    `url(${fallingRoses[Math.floor(Math.random() * fallingRoses.length)]})`;
+
+  document.body.appendChild(rose);
+
+  setTimeout(() => {
+    rose.remove();
+  }, 11000);
+}
+
+/* continuous loop */
+setInterval(spawnFallingRose, 600);
+
 
 console.log("🌹 Happy Rose Day Animation Loaded - 1000+ lines of pure love! 💖");
 </script>
