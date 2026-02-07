@@ -2,65 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Rose Day</title>
+<title>Happy Rose Day ❤️</title>
 
 <style>
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
   background: white;
   overflow: hidden;
-  height: 100vh;
 }
 
-/* CURTAIN */
+/* Curtain */
 .curtain {
   position: fixed;
   top: 0;
   width: 50%;
   height: 100%;
-  background: #8b0000;
+  background: #8b1e3f;
   z-index: 10;
-  animation: openCurtain 3s forwards;
+  animation: openCurtain 2.5s forwards;
 }
 
-.left {
-  left: 0;
-}
-
-.right {
-  right: 0;
-}
+.left { left: 0; }
+.right { right: 0; }
 
 @keyframes openCurtain {
-  to {
-    width: 0;
-  }
+  to { width: 0; }
 }
 
-/* MAIN CARD */
+/* Card */
 .card {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 420px;
-  height: 620px;
+  position: relative;
+  z-index: 2;
+  width: 380px;
+  margin: 100px auto;
   background: white;
-  border-radius: 25px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-  text-align: center;
   padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  text-align: center;
 }
 
-/* TITLE */
 h1 {
-  color: #8b1c3d;
+  color: #8b1e3f;
   margin-bottom: 10px;
 }
 
@@ -69,173 +58,120 @@ p {
   margin-bottom: 20px;
 }
 
-/* HEART CONTAINER */
+/* Heart container */
 .heart-box {
-  position: relative;
-  width: 280px;
-  height: 260px;
+  width: 260px;
+  height: 240px;
   margin: auto;
+  position: relative;
 }
 
-/* IMAGE HEART SHAPE */
-.heart-img {
-  width: 100%;
-  height: 100%;
-  background: url("rose.jpeg") center/cover no-repeat;
-  clip-path: path("M140 240 C-40 100 40 -20 140 80 C240 -20 320 100 140 240 Z");
-}
-
-/* SVG HEART DRAW */
+/* Heart SVG */
 svg {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-path {
+/* Draw animation */
+.heart-path {
   fill: none;
-  stroke: #ff3b7f;
-  stroke-width: 6;
-  stroke-linecap: round;
+  stroke: #e63973;
+  stroke-width: 4;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: drawHeart 4s ease forwards;
 }
 
 @keyframes drawHeart {
-  to {
-    stroke-dashoffset: 0;
-  }
+  to { stroke-dashoffset: 0; }
 }
 
-/* FLOATING HEARTS */
-.heart {
-  position: absolute;
-  color: pink;
-  font-size: 18px;
-  animation: float 8s linear infinite;
+/* Image clipped inside heart */
+.heart-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: path("M130 40 C130 -20 0 -20 0 70 C0 140 130 200 130 200 C130 200 260 140 260 70 C260 -20 130 -20 130 40 Z");
 }
 
-@keyframes float {
-  from {
-    transform: translateY(100vh);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-10vh);
-    opacity: 0;
-  }
-}
-
-/* RANDOM LOVE TEXT */
-.love-text {
+/* Floating text */
+.float-text {
   position: absolute;
   font-size: 18px;
-  font-weight: bold;
-  animation: fadeMove 4s linear forwards;
+  animation: floatUp 6s linear forwards;
 }
 
-@keyframes fadeMove {
-  0% { opacity: 0; }
-  20% { opacity: 1; }
-  100% {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-20vh); opacity: 0; }
 }
-  .flower {
+
+/* Flowers */
+.flower {
   position: absolute;
   width: 40px;
-  opacity: 0.8;
-  animation: flowerFall linear infinite;
+  animation: fall linear infinite;
 }
 
-@keyframes flowerFall {
-  from {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
+@keyframes fall {
+  from { transform: translateY(-10vh) rotate(0deg); }
+  to { transform: translateY(110vh) rotate(360deg); }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- CURTAINS -->
 <div class="curtain left"></div>
 <div class="curtain right"></div>
 
-<!-- MAIN CARD -->
 <div class="card">
   <h1>Happy Rose Day, Sans 🌹</h1>
   <p>Even miles apart, my love finds its way to you.</p>
 
   <div class="heart-box">
-    <div class="heart-img"></div>
-
-    <svg width="280" height="260" viewBox="0 0 280 260">
-      <path d="M140 240 C-40 100 40 -20 140 80 C240 -20 320 100 140 240 Z"/>
+    <img src="rose.jpeg" class="heart-img">
+    <svg width="260" height="240" viewBox="0 0 260 240">
+      <path class="heart-path"
+        d="M130 40
+           C130 -20 0 -20 0 70
+           C0 140 130 200 130 200
+           C130 200 260 140 260 70
+           C260 -20 130 -20 130 40 Z"/>
     </svg>
   </div>
 
-  <p style="margin-top:25px;">For you 💖</p>
+  <p style="margin-top:20px;">For you ❤️</p>
 </div>
 
 <script>
-/* FLOATING HEARTS */
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "💗";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = Math.random() * 20 + 10 + "px";
-  document.body.appendChild(h);
-
-  setTimeout(() => h.remove(), 8000);
-}, 400);
-
-/* RANDOM COLORED TEXT */
-const words = [
-  "i am falling in love",
-  "all over again"
-];
-
-const colors = [
-  "red","hotpink","purple","orange","blue",
-  "green","crimson","deeppink","gold","teal"
-];
+/* Floating text */
+const texts = ["i am falling in love", "all over again"];
+const colors = ["red","pink","purple","blue","green","orange","teal","magenta","crimson","gold"];
 
 setInterval(() => {
   const t = document.createElement("div");
-  t.className = "love-text";
-  t.innerText = words[Math.floor(Math.random() * words.length)];
-  t.style.left = Math.random() * 80 + "vw";
-  t.style.top = Math.random() * 80 + "vh";
-  t.style.color = colors[Math.floor(Math.random() * colors.length)];
+  t.className = "float-text";
+  t.innerText = texts[Math.floor(Math.random()*2)];
+  t.style.left = Math.random()*100 + "vw";
+  t.style.color = colors[Math.floor(Math.random()*colors.length)];
   document.body.appendChild(t);
+  setTimeout(()=>t.remove(),6000);
+}, 900);
 
-  setTimeout(() => t.remove(), 4000);
-}, 600);
-  <script>
-const flowers = ["rose.jpeg", "yellow.jpeg", "white1.jpeg"];
+/* Flowers */
+const flowers = ["rose.jpeg","yellow.jpeg","white1.jpeg"];
 
 setInterval(() => {
   const f = document.createElement("img");
-  f.src = flowers[Math.floor(Math.random() * flowers.length)];
+  f.src = flowers[Math.floor(Math.random()*flowers.length)];
   f.className = "flower";
-  f.style.left = Math.random() * 100 + "vw";
-  f.style.animationDuration = Math.random() * 5 + 6 + "s";
+  f.style.left = Math.random()*100 + "vw";
+  f.style.animationDuration = (6 + Math.random()*4) + "s";
   document.body.appendChild(f);
-
-  setTimeout(() => f.remove(), 11000);
+  setTimeout(()=>f.remove(),10000);
 }, 700);
-</script>
-
 </script>
 
 </body>
