@@ -137,6 +137,10 @@ path{
 </head>
 
 <body>
+  
+<audio id="bgMusic" autoplay loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
 
 <!-- CURTAINS -->
 <div class="curtain left"></div>
@@ -195,8 +199,18 @@ setInterval(()=>{
   document.body.appendChild(t);
   setTimeout(()=>t.remove(),4000);
 },600);
+
+const music = document.getElementById("bgMusic");
+
+document.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+  }
+}, { once: true });
+
 </script>
 
 </body>
 </html>
+
 
