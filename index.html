@@ -1,206 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Rose Day for Sans 🌹</title>
+<meta charset="UTF-8">
+<title>Rose Day for Sans 🌹</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(120deg,
-        #ff9a9e,
-        #fad0c4,
-        #fbc2eb,
-        #a18cd1,
-        #fbc8d4);
-      background-size: 400% 400%;
-      animation: gradientFlow 12s ease infinite;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(120deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1,#fbc8d4);
+  background-size: 400% 400%;
+  animation: gradientFlow 12s ease infinite;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    /* MAIN CARD */
-    .frame {
-      position: relative;
-      width: 420px;
-      height: 560px;
-      background: rgba(255,255,255,0.92);
-      border-radius: 35px;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.35);
-      padding-top: 30px;
-      text-align: center;
-      animation: float 4s ease-in-out infinite;
-      z-index: 10;
-    }
+/* CARD */
+.frame {
+  position: relative;
+  width: 420px;
+  height: 560px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 35px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+  padding-top: 30px;
+  text-align: center;
+  animation: float 4s ease-in-out infinite;
+  z-index: 10;
+}
 
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-14px); }
-    }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
 
-    h1 {
-      color: #7a123c;
-      margin-bottom: 10px;
-    }
+h1 { color: #7a123c; }
+p { color: #6b1c3a; padding: 0 30px; }
 
-    p {
-      color: #6b1c3a;
-      padding: 0 30px;
-      margin-bottom: 20px;
-    }
+/* PHOTO */
+.photo-container {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 20px auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 45px rgba(255,75,92,0.8);
+  z-index: 12;
+}
 
-    /* PHOTO */
-    .photo-container {
-      position: relative;
-      width: 240px;
-      height: 240px;
-      margin: 0 auto 20px;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 0 45px rgba(255,75,92,0.8);
-    }
+.photo {
+  width: 100%;
+  height: 100%;
+  background: url('sansss.jpeg') center/cover no-repeat;
+}
 
-    .photo {
-      width: 100%;
-      height: 100%;
-      background: url('sansss.jpeg') center/cover no-repeat;
-    }
+/* HEART */
+.heart {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9; /* NOW VISIBLE */
+  pointer-events: none;
+}
 
-    /* CURTAINS */
-    .curtain {
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(135deg, #ff4b5c, #ff9a9e);
-      z-index: 3;
-      animation-duration: 3s;
-      animation-fill-mode: forwards;
-    }
+.heart img {
+  position: absolute;
+  width: 42px;
+}
 
-    .curtain.left {
-      left: 0;
-      animation-name: openLeft;
-    }
+/* FALLING FLOWERS */
+.petal {
+  position: absolute;
+  width: 40px;
+  animation: fall linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
 
-    .curtain.right {
-      right: 0;
-      animation-name: openRight;
-    }
-
-    @keyframes openLeft {
-      to { transform: translateX(-100%); }
-    }
-
-    @keyframes openRight {
-      to { transform: translateX(100%); }
-    }
-
-    /* FALLING PETALS */
-    .petal {
-      position: absolute;
-      width: 40px;
-      animation: fall linear infinite;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    @keyframes fall {
-      from { transform: translateY(-60px) rotate(0deg); opacity: 1; }
-      to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* SELF-FORMING BACKGROUND ROSES */
-    .bg-rose {
-      position: absolute;
-      width: 90px;
-      opacity: 0;
-      animation: bloom 10s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    @keyframes bloom {
-      0% {
-        transform: scale(0.2) rotate(-10deg);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-      }
-      80% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: scale(1.2) translateY(-40px);
-        opacity: 0;
-      }
-    }
-  </style>
+@keyframes fall {
+  from { transform: translateY(-60px) rotate(0deg); opacity: 1; }
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="frame">
-    <h1>Happy Rose Day, Sans 🌹</h1>
-    <p>Every rose here blooms with the love I carry for you across the distance.</p>
+<div class="heart" id="heart"></div>
 
-    <div class="photo-container">
-      <div class="photo"></div>
-      <div class="curtain left"></div>
-      <div class="curtain right"></div>
-    </div>
+<div class="frame">
+  <h1>Happy Rose Day, Sans 🌹</h1>
+  <p>Every rose here blooms with the love I carry for you across the distance.</p>
 
-    <p>For you 🌹</p>
+  <div class="photo-container">
+    <div class="photo"></div>
   </div>
 
-  <script>
-    /* Falling petals */
-    const petals = ['rose.jpeg','yellow.jpeg','white1.jpeg'];
+  <p>For you 🌹</p>
+</div>
 
-    function dropPetal() {
-      const p = document.createElement('img');
-      p.src = petals[Math.floor(Math.random()*petals.length)];
-      p.className = 'petal';
-      p.style.left = Math.random()*100 + 'vw';
-      p.style.animationDuration = (Math.random()*6 + 6) + 's';
-      document.body.appendChild(p);
-      setTimeout(() => p.remove(), 12000);
-    }
+<script>
+/* HEART SHAPE */
+const heart = document.getElementById("heart");
+const flowers = ["rose.jpeg","yellow.jpeg","white1.jpeg"];
 
-    setInterval(dropPetal, 700);
+for (let i = 0; i < 26; i++) {
+  const a = i / 26 * Math.PI * 2;
+  const x = 180 + 120 * Math.pow(Math.sin(a), 3);
+  const y = 180 - (
+    90 * Math.cos(a)
+    - 40 * Math.cos(2*a)
+    - 20 * Math.cos(3*a)
+    - 10 * Math.cos(4*a)
+  );
 
-    /* Self-forming blooming roses */
-    function createBloomingRose() {
-      const rose = document.createElement('img');
-      rose.src = petals[Math.floor(Math.random() * petals.length)];
-      rose.className = 'bg-rose';
+  const img = document.createElement("img");
+  img.src = flowers[i % flowers.length];
+  img.style.left = x + "px";
+  img.style.top = y + "px";
+  heart.appendChild(img);
+}
 
-      rose.style.left = Math.random() * 100 + 'vw';
-      rose.style.top = Math.random() * 100 + 'vh';
-      rose.style.animationDuration = (8 + Math.random() * 6) + 's';
-
-      document.body.appendChild(rose);
-
-      setTimeout(() => rose.remove(), 14000);
-    }
-
-    setInterval(createBloomingRose, 1200);
-  </script>
+/* FALLING BACKGROUND */
+function dropPetal() {
+  const p = document.createElement("img");
+  p.src = flowers[Math.floor(Math.random()*flowers.length)];
+  p.className = "petal";
+  p.style.left = Math.random()*100 + "vw";
+  p.style.animationDuration = (6 + Math.random()*6) + "s";
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 12000);
+}
+setInterval(dropPetal, 700);
+</script>
 
 </body>
 </html>
